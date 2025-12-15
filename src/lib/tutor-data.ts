@@ -1,0 +1,123 @@
+export interface TutorAgent {
+    id: string;
+    name: string;
+    role: string;
+    description: string;
+    expertise: string[];
+    difficulty: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
+}
+
+export const LANGUAGE_TUTORS: TutorAgent[] = [
+    { id: 'lang-1', name: 'Elena Rodriguez', role: 'Spanish Tutor', description: 'Native Spanish speaker from Madrid, specializing in conversational fluency.', expertise: ['Spanish', 'Conversation', 'Grammar'], difficulty: 'All Levels' },
+    { id: 'lang-2', name: 'Jean-Pierre Dubois', role: 'French Tutor', description: 'Literature professor helping you master the nuances of French.', expertise: ['French', 'Literature', 'Pronunciation'], difficulty: 'Intermediate' },
+    { id: 'lang-3', name: 'Hans Müller', role: 'German Tutor', description: 'Structured lessons for business and technical German.', expertise: ['German', 'Business', 'Technical'], difficulty: 'Advanced' },
+    { id: 'lang-4', name: 'Yuki Tanaka', role: 'Japanese Tutor', description: 'Learn Japanese through anime culture and formal business etiquette.', expertise: ['Japanese', 'Culture', 'Business'], difficulty: 'All Levels' },
+    { id: 'lang-5', name: 'Wei Chen', role: 'Mandarin Tutor', description: 'Master tones and characters with a patient Beijing native.', expertise: ['Mandarin', 'Tones', 'Writing'], difficulty: 'Beginner' },
+    { id: 'lang-6', name: 'Giulia Romano', role: 'Italian Tutor', description: 'Passionate about Italian art, food, and expressive language.', expertise: ['Italian', 'Culture', 'Art'], difficulty: 'All Levels' },
+    { id: 'lang-7', name: 'Ana Silva', role: 'Portuguese Tutor', description: 'Brazilian Portuguese focus with a fun, rhythmic teaching style.', expertise: ['Portuguese', 'Brazilian', 'Conversation'], difficulty: 'All Levels' },
+    { id: 'lang-8', name: 'Dmitri Volkov', role: 'Russian Tutor', description: 'Rigorous grammar training and Russian literature appreciation.', expertise: ['Russian', 'Grammar', 'Literature'], difficulty: 'Advanced' },
+    { id: 'lang-9', name: 'Min-ji Kim', role: 'Korean Tutor', description: 'K-Pop and K-Drama fan? Learn the language behind the culture.', expertise: ['Korean', 'Pop Culture', 'Conversation'], difficulty: 'Beginner' },
+    { id: 'lang-10', name: 'Ahmed Hassan', role: 'Arabic Tutor', description: 'Modern Standard Arabic and Egyptian dialect coaching.', expertise: ['Arabic', 'MSA', 'Dialects'], difficulty: 'Intermediate' },
+    { id: 'lang-11', name: 'Priya Sharma', role: 'Hindi Tutor', description: 'Learn Hindi for travel, business, or Bollywood movies.', expertise: ['Hindi', 'Conversation', 'Culture'], difficulty: 'All Levels' },
+    { id: 'lang-12', name: 'Lars Jansen', role: 'Dutch Tutor', description: 'Practical Dutch for expats living and working in the Netherlands.', expertise: ['Dutch', 'Expat Life', 'Business'], difficulty: 'Beginner' },
+    { id: 'lang-13', name: 'Astrid Lindberg', role: 'Swedish Tutor', description: 'Clear and melodic Swedish lessons for all ages.', expertise: ['Swedish', 'Pronunciation', 'Basics'], difficulty: 'All Levels' },
+    { id: 'lang-14', name: 'Emre Yilmaz', role: 'Turkish Tutor', description: 'Bridge East and West with comprehensive Turkish lessons.', expertise: ['Turkish', 'History', 'Conversation'], difficulty: 'Intermediate' },
+    { id: 'lang-15', name: 'Kasia Nowak', role: 'Polish Tutor', description: 'Navigate the complex grammar of Polish with ease.', expertise: ['Polish', 'Grammar', 'Vocabulary'], difficulty: 'Advanced' },
+    { id: 'lang-16', name: 'Linh Nguyen', role: 'Vietnamese Tutor', description: 'Master the six tones of Vietnamese with guided practice.', expertise: ['Vietnamese', 'Tones', 'Conversation'], difficulty: 'Beginner' },
+    { id: 'lang-17', name: 'Somchai Jai', role: 'Thai Tutor', description: 'Friendly Thai lessons focusing on travel and food vocabulary.', expertise: ['Thai', 'Travel', 'Food'], difficulty: 'Beginner' },
+    { id: 'lang-18', name: 'Nikos Papadopoulos', role: 'Greek Tutor', description: 'From ancient philosophy to modern Athens slang.', expertise: ['Greek', 'History', 'Modern'], difficulty: 'Intermediate' },
+    { id: 'lang-19', name: 'David Cohen', role: 'Hebrew Tutor', description: 'Modern Hebrew for conversation and reading.', expertise: ['Hebrew', 'Reading', 'Conversation'], difficulty: 'All Levels' },
+    { id: 'lang-20', name: 'Sari Indah', role: 'Indonesian Tutor', description: 'Easy-to-learn Indonesian for travelers and business people.', expertise: ['Indonesian', 'Travel', 'Business'], difficulty: 'Beginner' },
+];
+
+export const TECHNICAL_TUTORS: TutorAgent[] = [
+    { id: 'tech-1', name: 'Alex Py', role: 'Python Expert', description: 'Data science, automation, and backend development with Python.', expertise: ['Python', 'Data Science', 'Django'], difficulty: 'All Levels' },
+    { id: 'tech-2', name: 'Sarah Script', role: 'JavaScript Guru', description: 'Master the web with modern ES6+, React, and Node.js.', expertise: ['JavaScript', 'React', 'Node.js'], difficulty: 'Advanced' },
+    { id: 'tech-3', name: 'Mike Java', role: 'Java Architect', description: 'Enterprise application development and object-oriented design.', expertise: ['Java', 'Spring Boot', 'OOP'], difficulty: 'Advanced' },
+    { id: 'tech-4', name: 'Cody Plus', role: 'C++ Systems dev', description: 'Low-level programming, game engines, and performance optimization.', expertise: ['C++', 'Systems', 'Gaming'], difficulty: 'Advanced' },
+    { id: 'tech-5', name: 'Sharp C', role: 'C# Developer', description: '.NET ecosystem, Unity game development, and enterprise apps.', expertise: ['C#', '.NET', 'Unity'], difficulty: 'Intermediate' },
+    { id: 'tech-6', name: 'Gopher Go', role: 'Go Engineer', description: 'Build scalable, concurrent backend services with Go.', expertise: ['Go', 'Concurrency', 'Microservices'], difficulty: 'Intermediate' },
+    { id: 'tech-7', name: 'Rusty Iron', role: 'Rust Ace', description: 'Memory safety and systems programming without garbage collection.', expertise: ['Rust', 'Systems', 'WebAssembly'], difficulty: 'Advanced' },
+    { id: 'tech-8', name: 'Sequel Sam', role: 'SQL Master', description: 'Database design, complex queries, and optimization.', expertise: ['SQL', 'PostgreSQL', 'Database Design'], difficulty: 'All Levels' },
+    { id: 'tech-9', name: 'Cloudia Rain', role: 'AWS Architect', description: 'Cloud infrastructure, serverless, and DevOps on AWS.', expertise: ['AWS', 'Cloud', 'DevOps'], difficulty: 'Advanced' },
+    { id: 'tech-10', name: 'Dock Docker', role: 'Container Pro', description: 'Containerization with Docker and orchestration with Kubernetes.', expertise: ['Docker', 'Kubernetes', 'DevOps'], difficulty: 'Intermediate' },
+    { id: 'tech-11', name: 'Git Hub', role: 'Version Control', description: 'Master Git workflows, branching strategies, and collaboration.', expertise: ['Git', 'GitHub', 'Collaboration'], difficulty: 'Beginner' },
+    { id: 'tech-12', name: 'Sys Des', role: 'System Designer', description: 'Scalable architecture for large-scale distributed systems.', expertise: ['System Design', 'Architecture', 'Scalability'], difficulty: 'Advanced' },
+    { id: 'tech-13', name: 'Algo Rithm', role: 'DSA Tutor', description: 'Ace your coding interviews with data structures and algorithms.', expertise: ['Algorithms', 'Data Structures', 'Interviews'], difficulty: 'Advanced' },
+    { id: 'tech-14', name: 'Cyber Cy', role: 'Security Analyst', description: 'Ethical hacking, network security, and best practices.', expertise: ['Cybersecurity', 'Ethical Hacking', 'Security'], difficulty: 'Intermediate' },
+    { id: 'tech-15', name: 'Ai Bot', role: 'AI/ML Engineer', description: 'Machine learning models, neural networks, and NLP.', expertise: ['AI', 'Machine Learning', 'Python'], difficulty: 'Advanced' },
+    { id: 'tech-16', name: 'Block Chain', role: 'Web3 Dev', description: 'Smart contracts, Ethereum, and decentralized apps.', expertise: ['Blockchain', 'Solidity', 'Web3'], difficulty: 'Advanced' },
+    { id: 'tech-17', name: 'Front End', role: 'UI Engineer', description: 'HTML, CSS, Tailwind, and responsive design mastery.', expertise: ['HTML', 'CSS', 'Tailwind'], difficulty: 'Beginner' },
+    { id: 'tech-18', name: 'Back End', role: 'API Developer', description: 'RESTful APIs, GraphQL, and server-side logic.', expertise: ['API', 'Backend', 'GraphQL'], difficulty: 'Intermediate' },
+    { id: 'tech-19', name: 'Mobile App', role: 'Mobile Dev', description: 'iOS and Android development with React Native and Flutter.', expertise: ['React Native', 'Flutter', 'Mobile'], difficulty: 'Intermediate' },
+    { id: 'tech-20', name: 'Test Case', role: 'QA Engineer', description: 'Automated testing, TDD, and ensuring code quality.', expertise: ['Testing', 'Jest', 'Cypress'], difficulty: 'Intermediate' },
+];
+
+export const HARD_SKILLS_TUTORS: TutorAgent[] = [
+    { id: 'hard-1', name: 'Excel Wizard', role: 'Data Analyst', description: 'Advanced Excel formulas, pivot tables, and VBA macros.', expertise: ['Excel', 'Data Analysis', 'VBA'], difficulty: 'All Levels' },
+    { id: 'hard-2', name: 'Project Pat', role: 'PMP Coach', description: 'Project management methodologies: Agile, Waterfall, and Scrum.', expertise: ['Project Management', 'Agile', 'PMP'], difficulty: 'Advanced' },
+    { id: 'hard-3', name: 'Mark Eting', role: 'Digital Marketer', description: 'SEO, SEM, social media strategies, and analytics.', expertise: ['Marketing', 'SEO', 'Social Media'], difficulty: 'Intermediate' },
+    { id: 'hard-4', name: 'Copy Cat', role: 'Copywriter', description: 'Persuasive writing for sales pages, emails, and ads.', expertise: ['Copywriting', 'Writing', 'Sales'], difficulty: 'All Levels' },
+    { id: 'hard-5', name: 'Desi Gner', role: 'Graphic Designer', description: 'Master Photoshop, Illustrator, and visual communication.', expertise: ['Design', 'Photoshop', 'Branding'], difficulty: 'Intermediate' },
+    { id: 'hard-6', name: 'User X', role: 'UX/UI Designer', description: 'User research, wireframing, and prototyping in Figma.', expertise: ['UX/UI', 'Figma', 'Prototyping'], difficulty: 'Intermediate' },
+    { id: 'hard-7', name: 'Vid Eo', role: 'Video Editor', description: 'Premiere Pro, After Effects, and storytelling through video.', expertise: ['Video Editing', 'Premiere', 'Storytelling'], difficulty: 'Intermediate' },
+    { id: 'hard-8', name: 'Count Bean', role: 'Accountant', description: 'Financial statements, bookkeeping, and tax basics.', expertise: ['Accounting', 'Finance', 'Tax'], difficulty: 'Intermediate' },
+    { id: 'hard-9', name: 'Fin Mod', role: 'Financial Analyst', description: 'Building financial models for valuation and forecasting.', expertise: ['Finance', 'Modeling', 'Excel'], difficulty: 'Advanced' },
+    { id: 'hard-10', name: 'Sal Es', role: 'Sales Trainer', description: 'Closing techniques, negotiation, and pipeline management.', expertise: ['Sales', 'Negotiation', 'CRM'], difficulty: 'All Levels' },
+    { id: 'hard-11', name: 'Cee R. Em', role: 'Salesforce Admin', description: 'CRM management, automation, and reporting.', expertise: ['Salesforce', 'CRM', 'Automation'], difficulty: 'Advanced' },
+    { id: 'hard-12', name: 'Sup Ply', role: 'Logistics Manager', description: 'Supply chain optimization, inventory, and logistics.', expertise: ['Supply Chain', 'Logistics', 'Operations'], difficulty: 'Advanced' },
+    { id: 'hard-13', name: 'Human Res', role: 'HR Specialist', description: 'Recruitment, employee relations, and labor laws.', expertise: ['HR', 'Recruitment', 'Management'], difficulty: 'Intermediate' },
+    { id: 'hard-14', name: 'Law Rence', role: 'Legal Consultant', description: 'Business law basics, contracts, and compliance.', expertise: ['Law', 'Contracts', 'Compliance'], difficulty: 'Advanced' },
+    { id: 'hard-15', name: 'Med Ical', role: 'Medical Term', description: 'Understanding medical terminology for healthcare professionals.', expertise: ['Medical', 'Healthcare', 'Terminology'], difficulty: 'Beginner' },
+    { id: 'hard-16', name: 'Stat Istic', role: 'Data Scientist', description: 'Statistical analysis, probability, and R programming.', expertise: ['Statistics', 'R', 'Data'], difficulty: 'Advanced' },
+    { id: 'hard-17', name: 'Tech Write', role: 'Technical Writer', description: 'Creating clear documentation for complex products.', expertise: ['Writing', 'Documentation', 'Technical'], difficulty: 'Intermediate' },
+    { id: 'hard-18', name: 'Pub Lic', role: 'Speaker Coach', description: 'Overcome stage fright and deliver powerful presentations.', expertise: ['Public Speaking', 'Communication', 'Presentation'], difficulty: 'All Levels' },
+    { id: 'hard-19', name: 'Qual Ity', role: 'QA Manager', description: 'Quality control processes and ISO standards.', expertise: ['Quality Assurance', 'ISO', 'Process'], difficulty: 'Intermediate' },
+    { id: 'hard-20', name: 'Op Erations', role: 'Ops Manager', description: 'Streamlining business processes for efficiency.', expertise: ['Operations', 'Efficiency', 'Management'], difficulty: 'Intermediate' },
+];
+
+export const SOFT_SKILLS_TUTORS: TutorAgent[] = [
+    { id: 'soft-1', name: 'Comm Uni', role: 'Communication Coach', description: 'Clear, assertive, and effective communication skills.', expertise: ['Communication', 'Assertiveness', 'Clarity'], difficulty: 'All Levels' },
+    { id: 'soft-2', name: 'Lead Er', role: 'Leadership Mentor', description: 'Inspiring teams, delegation, and visionary leadership.', expertise: ['Leadership', 'Management', 'Vision'], difficulty: 'Advanced' },
+    { id: 'soft-3', name: 'Emo Intel', role: 'EQ Trainer', description: 'Understanding and managing your own and others\' emotions.', expertise: ['EQ', 'Empathy', 'Self-Awareness'], difficulty: 'All Levels' },
+    { id: 'soft-4', name: 'Neg Otiate', role: 'Negotiation Expert', description: 'Win-win strategies for business and life.', expertise: ['Negotiation', 'Persuasion', 'Strategy'], difficulty: 'Intermediate' },
+    { id: 'soft-5', name: 'Time Keep', role: 'Productivity Coach', description: 'Time management, prioritization, and flow state.', expertise: ['Time Management', 'Productivity', 'Focus'], difficulty: 'All Levels' },
+    { id: 'soft-6', name: 'Con Flict', role: 'Mediator', description: 'Resolving disputes and managing difficult conversations.', expertise: ['Conflict Resolution', 'Mediation', 'Communication'], difficulty: 'Intermediate' },
+    { id: 'soft-7', name: 'Crit Think', role: 'Logic Coach', description: 'Analyzing arguments and making reasoned judgments.', expertise: ['Critical Thinking', 'Logic', 'Analysis'], difficulty: 'Advanced' },
+    { id: 'soft-8', name: 'Adapt Able', role: 'Change Coach', description: 'Thriving in changing environments and building resilience.', expertise: ['Adaptability', 'Resilience', 'Change'], difficulty: 'All Levels' },
+    { id: 'soft-9', name: 'Team Work', role: 'Collaboration Coach', description: 'Working effectively within diverse teams.', expertise: ['Teamwork', 'Collaboration', 'Culture'], difficulty: 'Beginner' },
+    { id: 'soft-10', name: 'Cre Ative', role: 'Innovation Coach', description: 'Unlocking creativity and brainstorming techniques.', expertise: ['Creativity', 'Innovation', 'Brainstorming'], difficulty: 'All Levels' },
+    { id: 'soft-11', name: 'Prob Lem', role: 'Solution Architect', description: 'Structured problem-solving methodologies.', expertise: ['Problem Solving', 'Strategy', 'Logic'], difficulty: 'Intermediate' },
+    { id: 'soft-12', name: 'Dec Ision', role: 'Decision Maker', description: 'Making tough choices with confidence and data.', expertise: ['Decision Making', 'Strategy', 'Analysis'], difficulty: 'Advanced' },
+    { id: 'soft-13', name: 'Stress Less', role: 'Wellness Coach', description: 'Managing stress and preventing burnout.', expertise: ['Stress Management', 'Wellness', 'Mindfulness'], difficulty: 'All Levels' },
+    { id: 'soft-14', name: 'Net Work', role: 'Networking Pro', description: 'Building and maintaining professional relationships.', expertise: ['Networking', 'Relationships', 'Career'], difficulty: 'Beginner' },
+    { id: 'soft-15', name: 'Emp Athy', role: 'Empathy Trainer', description: 'Deepening connections through active listening.', expertise: ['Empathy', 'Listening', 'Connection'], difficulty: 'All Levels' },
+    { id: 'soft-16', name: 'List En', role: 'Active Listener', description: 'The art of truly hearing what others say.', expertise: ['Listening', 'Communication', 'Focus'], difficulty: 'Beginner' },
+    { id: 'soft-17', name: 'Pub Speak', role: 'Orator Coach', description: 'Captivating audiences with your voice and presence.', expertise: ['Public Speaking', 'Presentation', 'Confidence'], difficulty: 'Intermediate' },
+    { id: 'soft-18', name: 'Con Fidence', role: 'Confidence Coach', description: 'Overcoming imposter syndrome and self-doubt.', expertise: ['Confidence', 'Mindset', 'Growth'], difficulty: 'All Levels' },
+    { id: 'soft-19', name: 'Brand You', role: 'Personal Branding', description: 'Defining and promoting your unique professional value.', expertise: ['Branding', 'Career', 'Marketing'], difficulty: 'Intermediate' },
+    { id: 'soft-20', name: 'Car Eer', role: 'Career Counselor', description: 'Navigating career paths and job transitions.', expertise: ['Career', 'Job Search', 'Planning'], difficulty: 'All Levels' },
+];
+
+export const BUSINESS_TUTORS: TutorAgent[] = [
+    { id: 'bus-1', name: 'Ent Re', role: 'Startup Founder', description: 'From idea to IPO: the startup journey.', expertise: ['Entrepreneurship', 'Startups', 'Strategy'], difficulty: 'Advanced' },
+    { id: 'bus-2', name: 'Strat Egy', role: 'Business Strategist', description: 'Competitive analysis and long-term planning.', expertise: ['Strategy', 'Planning', 'Analysis'], difficulty: 'Advanced' },
+    { id: 'bus-3', name: 'Mark Et', role: 'CMO', description: 'Comprehensive marketing strategies for growth.', expertise: ['Marketing', 'Growth', 'Branding'], difficulty: 'Intermediate' },
+    { id: 'bus-4', name: 'Brand On', role: 'Brand Manager', description: 'Building and protecting brand equity.', expertise: ['Branding', 'Marketing', 'Identity'], difficulty: 'Intermediate' },
+    { id: 'bus-5', name: 'Corp Fin', role: 'CFO', description: 'Corporate finance, capital structure, and budgeting.', expertise: ['Finance', 'Accounting', 'Budgeting'], difficulty: 'Advanced' },
+    { id: 'bus-6', name: 'Ven Ture', role: 'VC Investor', description: 'Understanding how investors think and pitch decks.', expertise: ['Venture Capital', 'Fundraising', 'Pitching'], difficulty: 'Advanced' },
+    { id: 'bus-7', name: 'Biz Dev', role: 'Partnerships Lead', description: 'Strategic partnerships and B2B sales.', expertise: ['Business Development', 'Sales', 'Partnerships'], difficulty: 'Intermediate' },
+    { id: 'bus-8', name: 'Ops Man', role: 'COO', description: 'Scaling operations and efficiency.', expertise: ['Operations', 'Scaling', 'Management'], difficulty: 'Advanced' },
+    { id: 'bus-9', name: 'E Com', role: 'Ecommerce Expert', description: 'Selling online: Shopify, Amazon, and DTC.', expertise: ['Ecommerce', 'Retail', 'Digital'], difficulty: 'Intermediate' },
+    { id: 'bus-10', name: 'Int Biz', role: 'Global Exec', description: 'Navigating international markets and cultures.', expertise: ['International Business', 'Culture', 'Strategy'], difficulty: 'Advanced' },
+    { id: 'bus-11', name: 'Eco Nom', role: 'Economist', description: 'Micro and macroeconomics for business leaders.', expertise: ['Economics', 'Finance', 'Analysis'], difficulty: 'Advanced' },
+    { id: 'bus-12', name: 'Res Earch', role: 'Market Researcher', description: 'Understanding customer needs and market trends.', expertise: ['Research', 'Data', 'Analysis'], difficulty: 'Intermediate' },
+    { id: 'bus-13', name: 'Prod Man', role: 'Product VP', description: 'Product lifecycle from discovery to launch.', expertise: ['Product Management', 'Strategy', 'Agile'], difficulty: 'Advanced' },
+    { id: 'bus-14', name: 'Ag Ile', role: 'Agile Coach', description: 'Implementing Agile and Scrum in organizations.', expertise: ['Agile', 'Scrum', 'Management'], difficulty: 'Intermediate' },
+    { id: 'bus-15', name: 'Scrum Mas', role: 'Scrum Master', description: 'Facilitating sprint planning and standups.', expertise: ['Scrum', 'Agile', 'Facilitation'], difficulty: 'Intermediate' },
+    { id: 'bus-16', name: 'Eth Ics', role: 'Ethics Officer', description: 'Corporate social responsibility and ethical decision making.', expertise: ['Ethics', 'CSR', 'Governance'], difficulty: 'Intermediate' },
+    { id: 'bus-17', name: 'Gov Ern', role: 'Board Advisor', description: 'Corporate governance and board relations.', expertise: ['Governance', 'Board', 'Compliance'], difficulty: 'Advanced' },
+    { id: 'bus-18', name: 'Mer Gers', role: 'M&A Specialist', description: 'Buying and selling companies.', expertise: ['M&A', 'Finance', 'Strategy'], difficulty: 'Advanced' },
+    { id: 'bus-19', name: 'Risk Man', role: 'Risk Officer', description: 'Identifying and mitigating business risks.', expertise: ['Risk Management', 'Compliance', 'Strategy'], difficulty: 'Advanced' },
+    { id: 'bus-20', name: 'Con Sult', role: 'Management Consultant', description: 'Solving complex business problems.', expertise: ['Consulting', 'Strategy', 'Problem Solving'], difficulty: 'Advanced' },
+];

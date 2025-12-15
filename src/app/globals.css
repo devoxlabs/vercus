@@ -1,26 +1,283 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Magical Orb Animations */
+@keyframes orbit-1 {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes orbit-2 {
+  0% {
+    transform: rotate(120deg) translateX(80px) rotate(-120deg);
+  }
+
+  100% {
+    transform: rotate(480deg) translateX(80px) rotate(-480deg);
+  }
+}
+
+@keyframes orbit-3 {
+  0% {
+    transform: rotate(240deg) translateX(120px) rotate(-240deg);
+  }
+
+  100% {
+    transform: rotate(600deg) translateX(120px) rotate(-600deg);
+  }
+}
+
+.animate-orbit-1 {
+  animation: orbit-1 3s linear infinite;
+}
+
+.animate-orbit-2 {
+  animation: orbit-2 4s linear infinite;
+}
+
+.animate-orbit-3 {
+  animation: orbit-3 5s linear infinite;
+}
+
+/* Glassy Orb Ribbon Animations */
+@keyframes ribbon-1 {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(-20%) rotate(45deg);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateX(20%) rotate(45deg);
+  }
+}
+
+@keyframes ribbon-2 {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(10%) rotate(30deg);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(-10%) rotate(30deg);
+  }
+}
+
+@keyframes ribbon-3 {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(-15%) rotate(60deg);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateX(15%) rotate(60deg);
+  }
+}
+
+.animate-ribbon-1 {
+  animation: ribbon-1 4s ease-in-out infinite;
+}
+
+.animate-ribbon-2 {
+  animation: ribbon-2 6s ease-in-out infinite;
+}
+
+.animate-ribbon-3 {
+  animation: ribbon-3 5s ease-in-out infinite;
+}
+
+/* Twinkle Animations */
+@keyframes twinkle-1 {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes twinkle-2 {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1.2);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes twinkle-3 {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+.animate-twinkle-1 {
+  animation: twinkle-1 2s ease-in-out infinite;
+}
+
+.animate-twinkle-2 {
+  animation: twinkle-2 3s ease-in-out infinite;
+}
+
+.animate-twinkle-3 {
+  animation: twinkle-3 2.5s ease-in-out infinite;
+}
+
+/* Slow Ping Animation */
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  75%,
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@layer base {
+  :root {
+    /* Neo-Brutalism Dark Theme (Exact Colors from Screenshot) */
+    /* Using HSL values for compatibility */
+
+    /* Background: #000000 */
+    --background: 0 0% 0%;
+    /* Foreground: #ffffff */
+    --foreground: 0 0% 100%;
+
+    /* Card: #333333 */
+    --card: 0 0% 20%;
+    /* Card Foreground: #ffffff */
+    --card-foreground: 0 0% 100%;
+
+    /* Popover: #333333 */
+    --popover: 0 0% 20%;
+    /* Popover Foreground: #ffffff */
+    --popover-foreground: 0 0% 100%;
+
+    /* Primary: #ff6666 */
+    --primary: 0 100% 70%;
+    /* Primary Foreground: #000000 */
+    --primary-foreground: 0 0% 0%;
+
+    /* Secondary: #ffff33 */
+    --secondary: 60 100% 60%;
+    /* Secondary Foreground: #000000 */
+    --secondary-foreground: 0 0% 0%;
+
+    /* Muted: #1a1a1a */
+    --muted: 0 0% 10%;
+    /* Muted Foreground: #cccccc */
+    --muted-foreground: 0 0% 80%;
+
+    /* Accent: #3388ff */
+    --accent: 215 100% 60%;
+    /* Accent Foreground: #000000 */
+    --accent-foreground: 0 0% 0%;
+
+    /* Destructive: #ff6666 (Using Primary Red) */
+    --destructive: 0 100% 70%;
+    --destructive-foreground: 0 0% 0%;
+
+    /* Border: #ffffff */
+    --border: 0 0% 100%;
+    /* Input: #ffffff */
+    --input: 0 0% 100%;
+    /* Ring: #ff6666 */
+    --ring: 0 100% 70%;
+
+    --radius: 0px;
+
+    /* Chart Colors */
+    --chart-1: 0 100% 70%;
+    /* #ff6666 */
+    --chart-2: 60 100% 60%;
+    /* #ffff33 */
+    --chart-3: 215 100% 60%;
+    /* #3388ff */
+    --chart-4: 120 100% 60%;
+    /* Greenish */
+    --chart-5: 280 100% 70%;
+    /* Purpleish */
+  }
+
+  .dark {
+    /* Same as root to enforce dark mode */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 20%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 20%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 100% 70%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 60 100% 60%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 80%;
+    --accent: 215 100% 60%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 70%;
+    --destructive-foreground: 0 0% 0%;
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 0 100% 70%;
+    --chart-1: 0 100% 70%;
+    --chart-2: 60 100% 60%;
+    --chart-3: 215 100% 60%;
+    --chart-4: 120 100% 60%;
+    --chart-5: 280 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Premium Gradient Background + Neo-Brutalism */
+    /* Keeping the subtle gradient but making it very dark to match the theme */
+    background: radial-gradient(circle at top center, #1a1a1a 0%, #000000 100%);
+    min-height: 100vh;
+  }
 }
