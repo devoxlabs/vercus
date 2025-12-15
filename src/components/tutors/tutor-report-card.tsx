@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, BookOpen, TrendingUp, AlertTriangle } from "lucide-react";
+import { useState } from "react";
+import { NotesViewer } from "./notes-viewer";
 
 export interface TutorSessionResult {
     status: 'pass' | 'fail';
@@ -13,6 +15,11 @@ export interface TutorSessionResult {
     strengths: string[];
     weaknesses: string[];
     recommendedCourses: string[];
+    notes?: {
+        summary: string;
+        keyConcepts: string[];
+        qaRecap: { question: string; answer: string }[];
+    };
 }
 
 interface TutorReportCardProps {
@@ -22,6 +29,7 @@ interface TutorReportCardProps {
 
 export function TutorReportCard({ result, onRestart }: TutorReportCardProps) {
     const isPass = result.status === 'pass';
+    const [showNotes, setShowNotes] = useState(false);
 
     return (
         <div className="flex items-center justify-center min-h-[600px] w-full p-4 my-auto">
@@ -100,7 +108,16 @@ export function TutorReportCard({ result, onRestart }: TutorReportCardProps) {
                         </div>
 
                     </CardContent>
-                    <CardFooter className="flex justify-center pt-2 pb-8">
+                    <CardFooter className="flex flex-col gap-4 justify-center pt-2 pb-8">
+                        {result.notes && result.score > 0 && (
+                            <Button
+                                onClick={() => setShowNotes(true)}
+                                variant="outline"
+                                className="w-full max-w-sm h-12 border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-black uppercase font-bold tracking-widest"
+                            >
+                                <BookOpen className="w-4 h-4 mr-2" /> View Mission Log
+                            </Button>
+                        )}
                         <Button
                             onClick={onRestart}
                             size="lg"
@@ -111,6 +128,14 @@ export function TutorReportCard({ result, onRestart }: TutorReportCardProps) {
                     </CardFooter>
                 </Card>
             </div>
+
+            {showNotes && result.notes && (
+                <NotesViewer
+                    notes={result.notes}
+                    onClose={() => setShowNotes(false)}
+                    title={result.title}
+                />
+            )}
         </div>
     );
 }

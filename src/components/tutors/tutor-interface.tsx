@@ -23,7 +23,7 @@ export function TutorInterface({ agent }: TutorInterfaceProps) {
     const [sessionComplete, setSessionComplete] = useState(false);
     const [sessionResult, setSessionResult] = useState<TutorSessionResult | null>(null);
 
-    const { isListening, transcript, setTranscript, startListening, stopListening, isSpeaking, speechData, speak, stopSpeaking, unlockAudio } = useSpeech();
+    const { isListening, transcript, setTranscript, startListening, stopListening, isSpeaking, speechData, speak, stopSpeaking, unlockAudio, error } = useSpeech();
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const isMounted = useRef(true);
 
@@ -74,7 +74,12 @@ export function TutorInterface({ agent }: TutorInterfaceProps) {
                 "feedback": "A brief summary of how the student did.",
                 "strengths": ["Strength 1", "Strength 2", "Strength 3"],
                 "weaknesses": ["Weakness 1", "Weakness 2", "Weakness 3"],
-                "recommendedCourses": ["Course 1", "Course 2", "Course 3"]
+                "recommendedCourses": ["Course 1", "Course 2", "Course 3"],
+                "notes": {
+                    "summary": "Brief summary of the session topics",
+                    "keyConcepts": ["Concept 1: Definition", "Concept 2: Definition"],
+                    "qaRecap": [{"question": "User Question", "answer": "Correct Answer"}]
+                }
             }
             
             Do not output anything else. Just the JSON.
@@ -186,12 +191,14 @@ export function TutorInterface({ agent }: TutorInterfaceProps) {
     // 1. Auto-Start Listening when AI stops speaking
     useEffect(() => {
         if (isStarted && messages.length > 0 && !isSpeaking && !isLoading && !isListening && !sessionComplete) {
+            // If network error, wait 5s before retrying to prevent loop
+            const delay = error === 'network' ? 5000 : 500;
             const timer = setTimeout(() => {
                 startListening();
-            }, 500);
+            }, delay);
             return () => clearTimeout(timer);
         }
-    }, [isSpeaking, isLoading, isListening, isStarted, sessionComplete, startListening, messages.length]);
+    }, [isSpeaking, isLoading, isListening, isStarted, sessionComplete, startListening, messages.length, error]);
 
     // 2. Auto-Send on Silence
     useEffect(() => {
@@ -199,7 +206,7 @@ export function TutorInterface({ agent }: TutorInterfaceProps) {
             const silenceTimer = setTimeout(() => {
                 stopListening();
                 handleSend(transcript);
-            }, 2000);
+            }, 4000);
             return () => clearTimeout(silenceTimer);
         }
     }, [transcript, isListening, handleSend, stopListening]);
@@ -245,7 +252,7 @@ export function TutorInterface({ agent }: TutorInterfaceProps) {
             </div>
 
             {/* Main Display Area */}
-            <div className="flex-1 overflow-hidden relative z-10">
+            <div className="flex-1 overflow-hidden relative z-10 min-h-0 w-full">
                 <AudioVisualizer isSpeaking={isSpeaking} isListening={isListening} speechData={speechData} />
 
                 {/* HUD Overlay */}
@@ -279,6 +286,11 @@ export function TutorInterface({ agent }: TutorInterfaceProps) {
                 ) : isLoading ? (
                     <div className="text-muted-foreground animate-pulse">
                         <span>Processing_Data...</span>
+                    </div>
+                ) : error === 'network' ? (
+                    <div className="text-red-500 animate-pulse flex items-center gap-2">
+                        <span className="w-2 h-2 bg-red-500 rounded-full" />
+                        <span>Connection_Lost_Retrying...</span>
                     </div>
                 ) : (
                     <div className="text-muted-foreground/50">

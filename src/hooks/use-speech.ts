@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export function useSpeech() {
     const [isListening, setIsListening] = useState(false);
@@ -9,6 +9,8 @@ export function useSpeech() {
     const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
     const [recognitionInstance, setRecognitionInstance] = useState<any>(null);
     const [speechData, setSpeechData] = useState<{ lastWordTimestamp: number, charIndex: number }>({ lastWordTimestamp: 0, charIndex: 0 });
+    const [error, setError] = useState<string | null>(null);
+    const isStarting = useRef(false);
 
     useEffect(() => {
         const loadVoices = () => {
@@ -26,12 +28,23 @@ export function useSpeech() {
             return;
         }
 
+        if (isStarting.current || isListening) return;
+
+        isStarting.current = true;
+        setError(null);
+
+        // Stop any existing instance
+        if (recognitionInstance) {
+            recognitionInstance.stop();
+        }
+
         const recognition = new (window as any).webkitSpeechRecognition();
         recognition.continuous = true;
         recognition.interimResults = true;
         recognition.lang = "en-US";
 
         recognition.onstart = () => {
+            isStarting.current = false;
             setIsListening(true);
         };
 
@@ -43,21 +56,35 @@ export function useSpeech() {
         };
 
         recognition.onerror = (event: any) => {
+            isStarting.current = false;
             if (event.error === 'no-speech') {
-                // Ignore no-speech errors as they are common when user is thinking
                 return;
             }
-            console.error("Speech recognition error", event.error);
+
+            if (event.error === 'network') {
+                console.warn("Speech recognition network error - attempting retry logic in UI");
+            } else {
+                console.error("Speech recognition error", event.error);
+            }
+
+            setError(event.error);
             setIsListening(false);
         };
 
         recognition.onend = () => {
+            isStarting.current = false;
             setIsListening(false);
         };
 
-        recognition.start();
-        setRecognitionInstance(recognition);
-    }, []);
+        try {
+            recognition.start();
+            setRecognitionInstance(recognition);
+        } catch (e) {
+            console.error("Failed to start recognition", e);
+            isStarting.current = false;
+            setIsListening(false);
+        }
+    }, [isListening, recognitionInstance]);
 
     const stopListening = useCallback(() => {
         if (recognitionInstance) {
@@ -148,5 +175,6 @@ export function useSpeech() {
         speakQueue,
         stopSpeaking,
         unlockAudio,
+        error,
     };
 }
